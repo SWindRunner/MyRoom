@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -27,7 +26,16 @@ public class UserAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			if("123456".equals(request.getParameter("id"))&&"qq".equals(request.getParameter("name"))){
+				request.getRequestDispatcher("new.jsp").forward(request, response);
+			}else{
+				System.out.println("error");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -36,8 +44,7 @@ public class UserAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		super.doPost(request, response);
 	}
 
 }
